@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DecisionApp from "./jsx/page/DecisionApp";
+import EvacuationApp from "./jsx/page/EvacuationApp";
+import NavBar from "./jsx/Navbar"; // Assuming NavBar is at the root of the src directory
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <NavBar /> {/* Include the NavBar so it's visible on all routes */}
+      <Routes>
+        <Route path="/" element={<DecisionApp />} />
+        <Route path="/evacuation" element={<EvacuationApp />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
